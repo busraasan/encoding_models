@@ -7,9 +7,12 @@ import os
 import nibabel
 from sklearn.metrics.pairwise import euclidean_distances
 from scipy.ndimage.filters import gaussian_filter
-
+import contextlib
+import wave
 from utils.ridge_tools import cross_val_ridge, corr
 import time as tm
+import pandas as pd
+from typing import List
 
 def read_word_times(filepath):
     '''
@@ -38,9 +41,9 @@ def read_word_times(filepath):
                 'end': float(end_str)
             })
     
-    return pd.DataFrame.from_records(records, columns=['word', 'start', 'end'])
+    return pd.DataFrame(records, columns=['word', 'start', 'end'])
 
-def read_tr_times(recording_path: str, TR_duration=2.0) -> dict:
+def read_tr_times(recording_path: str, TR_duration=1.49) -> dict:
     """
     Read a WAV file, compute its duration, then split into TRs of `TR_duration` seconds.
     Returns a DataFrame with columns:
@@ -58,9 +61,8 @@ def read_tr_times(recording_path: str, TR_duration=2.0) -> dict:
     n_TRs = int(np.ceil(duration / TR_duration))
     
     # 3. build start/end arrays
-    starts = np.arange(n_TRs) * TR_duration
-    ends   = starts + TR_duration
-    ends[-1] = min(ends[-1], duration)  # clip final TR to actual end
+    starts = np.arange(n_TRs) * TR_duration          # 0, 1.49, 2*1.49, …
+    ends   = np.minimum(starts + TR_duration, duration) # clip final TR to actual end
     
     # 4. assemble DataFrame
     tr_info = {
@@ -68,25 +70,30 @@ def read_tr_times(recording_path: str, TR_duration=2.0) -> dict:
         'start':  starts,
         'end':    ends
     }
-    return tr_info
+    return pd.DataFrame(tr_info, columns=['tr_num', 'start', 'end'])
 
 
-def TR_to_word_CV_ind(time_words_path: str, recording_path: str, TR_train_indicator, SKIP_WORDS=20, END_WORDS=5176):
+def TR_to_word_CV_ind(time_words, 
+        tr_times, 
+        TR_train_indicator, 
+        SKIP_WORDS_START=20,
+        SKIP_WORDS_END=15) -> np.ndarray:
 
-    tr_info = read_tr_times(recording_path)
-    time_words = read_word_times(time_words_path)
-    runs = [1]
-    offset = 20 # we have only one run TODO: think about this more
+    tr_info = tr_times
+    word_times = ((time_words["start"]+time_words["end"])/2).to_numpy()
+
+    offset = SKIP_WORDS_START + SKIP_WORDS_END # we have only one run TODO: think about this more
         
-    word_train_indicator = np.zeros([len(time_words)], dtype=bool)    
+    word_train_indicator = np.zeros([len(time_words)], dtype=bool)
     words_id = np.zeros([len(time_words)],dtype=int) # per word record which TR it belongs to
 
     # find what TR each word belongs to
-    for i in range(len(time_words)):
+    for i in range(len(word_times)):
         # find the last TR time that is ≤ this word’s onset by picking the last of all TR's before word's onset.        
-        words_id[i] = np.where(time_words[i] > tr_info['start'])[0][-1]
+        words_id[i] = np.where(word_times[i] > tr_info['start'])[0][-1]
         
-        if words_id[i] <= len(tr_info) - 15:
+        #if words_id[i] <= len(tr_info) - SKIP_WORDS_END:
+        if words_id[i] <= len(tr_info):
 
             # check if we will use this TR as a train or test sample
             if TR_train_indicator[int(words_id[i])-offset-1] == 1:
@@ -107,7 +114,7 @@ def lanczosfun(cutoff, t, window=3):
 
     return val
 
-def lanczosinterp2D(data, oldtime, tr_time, window=3, cutoff_mult=1.0, rectify=False):
+def lanczosinterp2D(data, oldtime: np.ndarray, tr_time: np.ndarray, window=3, cutoff_mult=1.0, rectify=False):
     """Interpolates the columns of [data], assuming that the i'th row of data corresponds to
     oldtime(i) which is the middle of the words. A new matrix with the same number of columns 
     and a number of rows given by the length of [tr_time] is returned.
@@ -117,6 +124,11 @@ def lanczosinterp2D(data, oldtime, tr_time, window=3, cutoff_mult=1.0, rectify=F
     
     [window] lobes of the sinc function will be used. [window] should be an integer.
     """
+
+    assert len(oldtime) == data.shape[0], (
+        f"Mismatch: word time stamps has {len(oldtime)} entries but data has "
+        f"{data.shape[0]} words. Check if your timestamps and words in the transcriptions match."
+    )
     ## Find the cutoff frequency ## 
     cutoff = 1/np.mean(np.diff(tr_time)) * cutoff_mult
     print ("Doing lanczos interpolation with cutoff=%0.3f and %d lobes." % (cutoff, window))
@@ -135,14 +147,56 @@ def lanczosinterp2D(data, oldtime, tr_time, window=3, cutoff_mult=1.0, rectify=F
 
     return newdata
 
-def align_features(layer_reps_dict: dict, timestamps: pd.DataFrame, tr_times):
+def align_features(layer_reps_dict: pd.DataFrame, timestamps: pd.DataFrame, tr_times: dict):
 
     # Pick timestamps for words as the middle of the start and end times.
-    word_times = (timestamps["start"]+timestamps["end"])/2
+    word_times = ((timestamps["start"]+timestamps["end"])/2).to_numpy()
+    tr_times = tr_times["start"]
 
     # Align the representations using lanczos filter from word timestamps to the TR timestamps.
     TR_aligned_features = []
-    for layer, word_level_features in np.arange(layer_reps_dict):
+    for layer, word_level_features in layer_reps_dict.items():
         aligned_features = lanczosinterp2D(word_level_features, word_times, tr_times, window=4)
         TR_aligned_features.append(aligned_features)
+
+    return TR_aligned_features
+
+def build_delay_fir_matrix(
+    feature_matrix: np.ndarray,
+    lags: List[int]
+) -> np.ndarray:
+    """
+    Constructs an FIR‐style design matrix by concatenating time‐shifted versions
+    of the input feature matrix.
+
+    Parameters
+    ----------
+    feature_matrix : np.ndarray, shape (T, D)
+        Original time × features data.
+    lags : List[int]
+        Integers specifying the time‐step offsets (e.g. [1,2,3,4,5,6,7,8]).
+
+    Returns
+    -------
+    design_matrix : np.ndarray, shape (T, D * len(lags))
+        Each output row t is the concatenation of feature_matrix at times
+        t-lag for each lag in `lags`. Rows where t-lag is out of bounds are
+        zero-padded.
+    """
+    T, D = feature_matrix.shape
+    # T rows, D features per lag
+    design_matrix = np.zeros((T, D * len(lags)), dtype=feature_matrix.dtype)
+
+    for idx, lag in enumerate(lags):
+        start_col = idx * D
+        end_col = (idx + 1) * D
+
+        if lag > 0:
+            design_matrix[lag:, start_col:end_col] = feature_matrix[:-lag, :]
+        elif lag < 0:
+            design_matrix[:lag, start_col:end_col] = feature_matrix[-lag:, :]
+        else:  # lag == 0
+            design_matrix[:, start_col:end_col] = feature_matrix
+
+    return design_matrix # (T, D*8) for 8 lag
 

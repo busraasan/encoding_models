@@ -50,7 +50,7 @@ class EncodingModel():
 
         # For the very first few windows, you haven’t yet “filled” a full sliding window of length seq_len, 
         # so you just repeatedly process the first seq_len words exactly seq_len times.
-        word_seq = text_array[:self.seq_len]
+        word_seq = self.text_array[:self.seq_len]
         for _ in range(self.seq_len):
             layerwise_embeddings = self.add_avrg_token_embedding_for_specific_word(word_seq,
                                             from_start_word_ind_to_extract,

@@ -86,7 +86,7 @@ def kernel_ridge_by_lambda_svd(X, Y, Xval, Yval, lambdas=np.array([0.1,1,10,100,
         error[idx] = 1 - R2(np.dot(Xval,weights),Yval)
     return error
 
-def cross_val_ridge(train_features,train_data, n_splits = 10,
+def cross_val_ridge(train_features, train_data, n_splits = 10,
                     lambdas = np.array([10**i for i in range(-6,10)]),
                     method = 'plain',
                     do_plot = False):
