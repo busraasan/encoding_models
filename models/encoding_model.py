@@ -31,7 +31,7 @@ class EncodingModel():
         # get the token embeddings per word
         print('Getting token embeddings...')
         token_embeddings = []
-        for word in text_array:
+        for word in self.text_array:
             current_token_embedding = self.get_token_embeddings([word]) # one word consists of multiple tokens
             token_embeddings.append(np.mean(current_token_embedding.detach().numpy(), 1)) # average the representations of the tokens to get an embedding per word
         

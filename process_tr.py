@@ -11,7 +11,7 @@ from scipy.ndimage.filters import gaussian_filter
 from utils.ridge_tools import cross_val_ridge, corr
 import time as tm
 
-def read_time_words(filepath):
+def read_word_times(filepath):
     '''
     Read a timing txt file where each line is formatted as:
     word_start_end (e.g. "Okay,_0.0_0.26"), 
@@ -40,7 +40,7 @@ def read_time_words(filepath):
     
     return pd.DataFrame.from_records(records, columns=['word', 'start', 'end'])
 
-def get_TR_information(recording_path: str, TR_duration=2.0) -> dict:
+def read_tr_times(recording_path: str, TR_duration=2.0) -> dict:
     """
     Read a WAV file, compute its duration, then split into TRs of `TR_duration` seconds.
     Returns a DataFrame with columns:
@@ -73,8 +73,8 @@ def get_TR_information(recording_path: str, TR_duration=2.0) -> dict:
 
 def TR_to_word_CV_ind(time_words_path: str, recording_path: str, TR_train_indicator, SKIP_WORDS=20, END_WORDS=5176):
 
-    tr_info = get_TR_information(recording_path)
-    time_words = read_time_words(time_words_path)
+    tr_info = read_tr_times(recording_path)
+    time_words = read_word_times(time_words_path)
     runs = [1]
     offset = 20 # we have only one run TODO: think about this more
         
