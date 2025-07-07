@@ -94,3 +94,55 @@ def TR_to_word_CV_ind(time_words_path: str, recording_path: str, TR_train_indica
 
     return word_train_indicator
 
+def lanczosfun(cutoff, t, window=3):
+    """Compute the lanczos function with some cutoff frequency [B] at some time [t].
+    [t] can be a scalar or any shaped numpy array.
+    If given a [window], only the lowest-order [window] lobes of the sinc function
+    will be non-zero.
+    """
+    t = t * cutoff
+    val = window * np.sin(np.pi*t) * np.sin(np.pi*t/window) / (np.pi**2 * t**2)
+    val[t==0] = 1.0
+    val[np.abs(t)>window] = 0.0
+
+    return val
+
+def lanczosinterp2D(data, oldtime, tr_time, window=3, cutoff_mult=1.0, rectify=False):
+    """Interpolates the columns of [data], assuming that the i'th row of data corresponds to
+    oldtime(i) which is the middle of the words. A new matrix with the same number of columns 
+    and a number of rows given by the length of [tr_time] is returned.
+    
+    The time points in [newtime] are assumed to be evenly spaced, and their frequency will
+    be used to calculate the low-pass cutoff of the interpolation filter.
+    
+    [window] lobes of the sinc function will be used. [window] should be an integer.
+    """
+    ## Find the cutoff frequency ## 
+    cutoff = 1/np.mean(np.diff(tr_time)) * cutoff_mult
+    print ("Doing lanczos interpolation with cutoff=%0.3f and %d lobes." % (cutoff, window))
+    
+    ## Build up sinc matrix ##
+    sincmat = np.zeros((len(tr_time), len(oldtime)))
+    for ndi in range(len(tr_time)):
+        sincmat[ndi,:] = lanczosfun(cutoff, tr_time[ndi]-oldtime, window)
+    
+    if rectify:
+        newdata = np.hstack([np.dot(sincmat, np.clip(data, -np.inf, 0)), 
+                            np.dot(sincmat, np.clip(data, 0, np.inf))])
+    else:
+        ## Construct new signal by multiplying the sinc matrix by the data ##
+        newdata = np.dot(sincmat, data)
+
+    return newdata
+
+def align_features(layer_reps_dict: dict, timestamps: pd.DataFrame, tr_times):
+
+    # Pick timestamps for words as the middle of the start and end times.
+    word_times = (timestamps["start"]+timestamps["end"])/2
+
+    # Align the representations using lanczos filter from word timestamps to the TR timestamps.
+    TR_aligned_features = []
+    for layer, word_level_features in np.arange(layer_reps_dict):
+        aligned_features = lanczosinterp2D(word_level_features, word_times, tr_times, window=4)
+        TR_aligned_features.append(aligned_features)
+
