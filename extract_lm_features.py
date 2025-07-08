@@ -19,7 +19,7 @@ def save_layer_representations(model_layer_dict: dict, model_name: str, seq_len:
     print('Saved extracted features to {}'.format(save_dir))
     return 1
 
-def save_layer_representations_dict(model_layer_dict: dict, model_name: str, seq_len: int, save_dir: str) -> None:
+def save_layer_representations_dict(model_layer_dict: dict, model_name: str, seq_len: int, save_dir: str, task_name: str) -> None:
     """
     Stacks each layer’s outputs, packs them into a dict, and saves as a single .npz file.
     """
@@ -31,7 +31,7 @@ def save_layer_representations_dict(model_layer_dict: dict, model_name: str, seq
     }
     fname = os.path.join(
         save_dir,
-        f"{model_name}/{model_name}_length_{seq_len}_all_layers.npz"
+        f"{task_name}/{model_name}/{model_name}_length_{seq_len}_all_layers.npz"
     )
     # Save compressed
     np.savez_compressed(fname, **out_dict)
@@ -56,7 +56,7 @@ def get_nlp_features_fixed_length(seq_len: int, feat_dir: str, model_type: str ,
         train = representations[train_indicator]
         test = representations[~train_indicator]
     else:
-        print('Unrecognized NLP feature type {}. Available options BERT and Llama-7B use'.format(feat_type))
+        print('Unrecognized NLP feature type {}. Available options BERT and Llama-7B use'.format(args.nlp_model))
     
     pca = PCA(n_components=10, svd_solver='full')
     pca.fit(train)
@@ -72,14 +72,17 @@ if __name__ == "__main__":
     parser.add_argument("--nlp_model", default='BERT', choices=model_options)                
     parser.add_argument("--sequence_length", type=int, default=20, help='length of context to provide to NLP model (default: 1)')
     parser.add_argument("--output_dir", help='directory to save extracted representations to')
+    parser.add_argument("--stimuli_file", default="../stimuli_transcriptions/black_audio.txt")
+    parser.add_argument("--task_name", default="BlackStory")
+
 
     args = parser.parse_args()
 
-    if not os.path.exists(args.output_dir+"/"+args.nlp_model):
-        os.makedirs(args.output_dir+"/"+args.nlp_model)
+    if not os.path.exists(args.output_dir+"/"+args.task_name+"/"+args.nlp_model):
+        os.makedirs(args.output_dir+"/"+args.task_name+"/"+args.nlp_model)
 
     # Create the text array to process chunk by chunk
-    with open("../stimuli_transcriptions/lucy_audio.txt") as f:
+    with open(args.stimuli_file) as f:
         text = f.read()
     text_array = np.array(text.split())
 
@@ -95,4 +98,4 @@ if __name__ == "__main__":
     # Run the chunks through the model and get sequence representation per sequence in the text_array
     nlp_features = encoding_model.get_layer_representations() # Shape: (num_seqs, num_hidden)
     # Save representations
-    save_layer_representations_dict(nlp_features, args.nlp_model, args.sequence_length, args.output_dir)
+    save_layer_representations_dict(nlp_features, args.nlp_model, args.sequence_length, args.output_dir, args.task_name)
