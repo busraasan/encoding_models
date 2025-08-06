@@ -113,25 +113,27 @@ def cross_val_ridge(train_features, train_data, n_splits = 10,
         cost = ridge_1(train_features[trn],train_data[trn],
                                train_features[val],train_data[val],
                                lambdas=lambdas)
+        print(trn.shape, val.shape)
         if do_plot:
             import matplotlib.pyplot as plt
             plt.figure()
-            plt.imshow(cost,aspect = 'auto')
+            plt.imshow(cost, aspect = 'auto')
         r_cv += cost
         #if icv%3 ==0:
         #    print(icv)
         #print('average iteration length {}'.format((time.time()-start_t)/(icv+1)))
     if do_plot:
         plt.figure()
-        plt.imshow(r_cv,aspect='auto',cmap = 'RdBu_r');
+        plt.imshow(r_cv,aspect='auto',cmap = 'RdBu_r')
 
-    argmin_lambda = np.argmin(r_cv,axis = 0)
+    argmin_lambda = np.argmin(r_cv, axis = 0)
     weights = np.zeros((train_features.shape[1],train_data.shape[1]))
+    # best lambda is picked for each voxel
     for idx_lambda in range(lambdas.shape[0]): # this is much faster than iterating over voxels!
         idx_vox = argmin_lambda == idx_lambda
         weights[:,idx_vox] = ridge_2(train_features, train_data[:,idx_vox],lambdas[idx_lambda])
     if do_plot:
         plt.figure()
-        plt.imshow(weights,aspect='auto',cmap = 'RdBu_r',vmin = -0.5,vmax = 0.5);
+        plt.imshow(weights, aspect='auto', cmap = 'RdBu_r', vmin = -0.5, vmax = 0.5);
 
     return weights, np.array([lambdas[i] for i in argmin_lambda])

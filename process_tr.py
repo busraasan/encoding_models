@@ -82,7 +82,7 @@ def TR_to_word_CV_ind(time_words,
     tr_info = tr_times
     word_times = ((time_words["start"]+time_words["end"])/2).to_numpy()
 
-    offset = SKIP_WORDS_START + SKIP_WORDS_END # we have only one run TODO: think about this more
+    offset = SKIP_WORDS_START + SKIP_WORDS_END # we have only one run
         
     word_train_indicator = np.zeros([len(time_words)], dtype=bool)
     words_id = np.zeros([len(time_words)],dtype=int) # per word record which TR it belongs to
@@ -153,13 +153,14 @@ def align_features(layer_reps_dict: pd.DataFrame, timestamps: pd.DataFrame, tr_t
     word_times = ((timestamps["start"]+timestamps["end"])/2).to_numpy()
     tr_times = tr_times["start"]
 
-    # Align the representations using lanczos filter from word timestamps to the TR timestamps.
-    TR_aligned_features = []
-    for layer, word_level_features in layer_reps_dict.items():
-        aligned_features = lanczosinterp2D(word_level_features, word_times, tr_times, window=4)
-        TR_aligned_features.append(aligned_features)
+    aligned_layer_reps_dict = {}
 
-    return TR_aligned_features
+    # Align the representations using lanczos filter from word timestamps to the TR timestamps.
+    for layer, word_level_features in layer_reps_dict.items():
+        aligned_features = lanczosinterp2D(data=word_level_features, oldtime=word_times, tr_time=tr_times, window=4)
+        aligned_layer_reps_dict[layer] = aligned_features
+
+    return aligned_layer_reps_dict
 
 def build_delay_fir_matrix(
     feature_matrix: np.ndarray,

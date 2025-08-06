@@ -1,5 +1,5 @@
 import transformers
-from transformers import AutoModel, AutoTokenizer
+from transformers import AutoModel, AutoTokenizer, LlamaForCausalLM, LlamaTokenizer
 from typing import List
 import torch
 import numpy as np
@@ -14,11 +14,12 @@ import time as tm
 class EncodingModel():
     # the index of the word for which to extract the representations (in the input "[CLS] word_1 ... word_n [SEP]")
     # for CLS, set to 0; for SEP set to -1; for last word set to -2
-    def __init__(self, model:str, tokenizer:str, seq_len: int, text_array: List[str], remove_chars: List[str]):
-
+    
+    def __init__(self, model_name:str, model:str, tokenizer:str, seq_len: int, text_array: List[str], remove_chars: List[str]):
         self.seq_len = seq_len
         self.text_array = text_array # whole text as an array, elements are words and punctuations
         self.remove_chars = remove_chars
+        self.model_name = model_name
         self.model = AutoModel.from_pretrained(model)
         self.tokenizer = AutoTokenizer.from_pretrained(tokenizer)
 
@@ -113,8 +114,13 @@ class EncodingModel():
         Get lastlayer embeddings for a sequence of tokens
         '''
 
-        tokens_tensor, _ = self._prepare_tokens(words_in_array)        
-        token_embeddings = self.model.embeddings.forward(tokens_tensor)
+        tokens_tensor, _ = self._prepare_tokens(words_in_array)
+        if "gpt" in self.model_name.lower():
+            
+            embed_layer = self.model.get_input_embeddings()
+            token_embeddings = embed_layer(tokens_tensor)
+        else:
+            token_embeddings = self.model.embeddings.forward(tokens_tensor)
         
         return token_embeddings
 
@@ -126,7 +132,10 @@ class EncodingModel():
         tokens_tensor, word_ind_to_token_ind = self._prepare_tokens(words_in_array)
         outputs = self.model(tokens_tensor, output_hidden_states=True, return_dict=True) # full forward pass, get representations per token
         encoded_layers = torch.stack(outputs.hidden_states, dim=0) # Shape = [num_layers, batch_size, seq_token_len, hidden_dim]
-        pooled_output = outputs.pooler_output.detach().cpu().numpy().squeeze() # pool to last CLS token (might need to check this)
+        if "BERT" in self.model_name:
+            pooled_output = outputs.pooler_output.detach().cpu().numpy().squeeze() # pool to last CLS token (might need to check this)
+        else:
+            pooled_output = None
 
         return encoded_layers, word_ind_to_token_ind, pooled_output
 

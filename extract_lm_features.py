@@ -6,11 +6,12 @@ import argparse
 from models.encoding_model import EncodingModel
 from sklearn.decomposition import PCA
 
-model_options = ['BERT', 'Llama-7B']
+model_options = ['BERT', 'Llama-7B', "GPT-2"]
 
 model_list = {
-    "BERT":"google-bert/bert-base-uncased",
-    "Llama-7B":"meta-llama/Llama-2-7b"
+    "BERT":"/BRAIN/neuromod-data/static00/apps/hf_cache/bert-uncased",
+    "Llama-7B":"/BRAIN/neuromod-data/static00/apps/hf_cache/llama-2-7b",
+    "GPT-2":"/BRAIN/neuromod-data/static00/apps/hf_cache/gpt2",
 }
 
 def save_layer_representations(model_layer_dict: dict, model_name: str, seq_len: int, save_dir: str) -> int:             
@@ -51,8 +52,7 @@ def get_nlp_features_fixed_length(seq_len: int, feat_dir: str, model_type: str ,
     Take representations of a specific layer and convert them into test and train sets.
     Return both PCA and dense versions of the datasets.
     '''
-    
-    if model_type == 'BERT' or model_type == 'Llama-7B':
+    if model_type == 'BERT' or model_type == 'Llama-7B' or model_type == "GPT-2":
         train = representations[train_indicator]
         test = representations[~train_indicator]
     else:
@@ -69,12 +69,11 @@ def get_nlp_features_fixed_length(seq_len: int, feat_dir: str, model_type: str ,
 if __name__ == "__main__":
 
     parser = argparse.ArgumentParser()
-    parser.add_argument("--nlp_model", default='BERT', choices=model_options)                
+    parser.add_argument("--nlp_model", default='GPT-2', choices=model_options)                
     parser.add_argument("--sequence_length", type=int, default=20, help='length of context to provide to NLP model (default: 1)')
-    parser.add_argument("--output_dir", help='directory to save extracted representations to')
-    parser.add_argument("--stimuli_file", default="../stimuli_transcriptions/black_audio.txt")
-    parser.add_argument("--task_name", default="BlackStory")
-
+    parser.add_argument("--output_dir", default="/BRAIN/neuromod-data/static00/training_saves/", help='directory to save extracted representations to')
+    parser.add_argument("--stimuli_file", default="../stimuli_transcriptions/prettymouth_audio.txt")
+    parser.add_argument("--task_name", default="PrettymouthStory")
 
     args = parser.parse_args()
 
@@ -88,6 +87,7 @@ if __name__ == "__main__":
 
     # Initialize the encoding model
     encoding_model = EncodingModel(
+                model_name=args.nlp_model,
                 model=model_list[args.nlp_model],
                 tokenizer=model_list[args.nlp_model],
                 seq_len=20,

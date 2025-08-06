@@ -1,1 +1,4 @@
 *.npy
+
+# Ignore everything inside encoding_models/plots/corr_figures
+encoding_models/plots/corr_figures/
