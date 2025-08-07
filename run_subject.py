@@ -135,6 +135,26 @@ for i, wav_file in enumerate(wav_files):
             "layer_reps_dict": layer_reps_dict,
             "TR_aligned_features": aligned_layer_reps_dict,
         })
+
+    elif args.region == "GREY_MATTER":
+        fmri_data = load_fmri_data_gm(datadir="/BRAIN/neuromod-data/static00/narratives.fmriprep",
+                                    subject=args.subject,
+                                    session='ses-' + str(session).zfill(3),
+                                    task=task_name,
+                                    resample_masks=False,
+                                    start_trim=TRIM_START,
+                                    end_trim=TRIM_END)
+
+        all_stories_dataset.append({
+            "task_name": task_name,
+            "session": session,
+            "tr_times": tr_times,
+            "word_times": word_times,
+            "audio_name": audio_name,
+            "fmri_data": fmri_data,
+            "layer_reps_dict": layer_reps_dict,
+            "TR_aligned_features": aligned_layer_reps_dict,
+        })
         
     else:
         fmri_data = load_fmri_data_fsavg_surf(datadir="/BRAIN/neuromod-data/static00/narratives.fmriprep",
@@ -143,6 +163,17 @@ for i, wav_file in enumerate(wav_files):
                                     task=task_name,
                                     start_trim=TRIM_START,
                                     end_trim=TRIM_END)
+        
+        all_stories_dataset.append({
+            "task_name": task_name,
+            "session": session,
+            "tr_times": tr_times,
+            "word_times": word_times,
+            "audio_name": audio_name,
+            "fmri_data": fmri_data,
+            "layer_reps_dict": layer_reps_dict,
+            "TR_aligned_features": aligned_layer_reps_dict,
+        })
         
 
 def run_class_time_CV_fmri_crossval_ridge(all_stories_dataset,

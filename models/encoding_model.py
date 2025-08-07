@@ -15,13 +15,15 @@ class EncodingModel():
     # the index of the word for which to extract the representations (in the input "[CLS] word_1 ... word_n [SEP]")
     # for CLS, set to 0; for SEP set to -1; for last word set to -2
     
-    def __init__(self, model_name:str, model:str, tokenizer:str, seq_len: int, text_array: List[str], remove_chars: List[str]):
+    def __init__(self, model_name:str, model:str, tokenizer:str, seq_len: int, text_array: List[str], remove_chars: List[str], device="cuda:0"):
         self.seq_len = seq_len
         self.text_array = text_array # whole text as an array, elements are words and punctuations
         self.remove_chars = remove_chars
         self.model_name = model_name
-        self.model = AutoModel.from_pretrained(model)
+        self.device = torch.device(device if torch.cuda.is_available() else "cpu")
+        self.model = AutoModel.from_pretrained(model).to(self.device).eval()
         self.tokenizer = AutoTokenizer.from_pretrained(tokenizer)
+        
 
     def get_layer_representations(self, word_ind_to_extract=-2) -> dict:
         '''
@@ -34,7 +36,7 @@ class EncodingModel():
         token_embeddings = []
         for word in self.text_array:
             current_token_embedding = self.get_token_embeddings([word]) # one word consists of multiple tokens
-            token_embeddings.append(np.mean(current_token_embedding.detach().numpy(), 1)) # average the representations of the tokens to get an embedding per word
+            token_embeddings.append(np.mean(current_token_embedding.detach().cpu().numpy(), 1)) # average the representations of the tokens to get an embedding per word
         
         # store layer-wise embeddings of particular length
         layerwise_embeddings = {}
@@ -104,7 +106,7 @@ class EncodingModel():
 
         # convert token to vocabulary indices
         indexed_tokens = self.tokenizer.convert_tokens_to_ids(seq_tokens)
-        tokens_tensor = torch.tensor([indexed_tokens])
+        tokens_tensor = torch.tensor([indexed_tokens]).to(self.device)
 
         return tokens_tensor, word_ind_to_token_ind
 
@@ -115,7 +117,7 @@ class EncodingModel():
         '''
 
         tokens_tensor, _ = self._prepare_tokens(words_in_array)
-        if "gpt" in self.model_name.lower():
+        if "gpt" in self.model_name.lower() or "llama" in self.model_name.lower():
             
             embed_layer = self.model.get_input_embeddings()
             token_embeddings = embed_layer(tokens_tensor)
@@ -176,13 +178,13 @@ class EncodingModel():
         '''
         if specific_layer >= 0:  # only add embeddings for one specified layer
             layer_embedding = embeddings_to_add[specific_layer]
-            full_sequence_embedding = layer_embedding.detach().numpy()
+            full_sequence_embedding = layer_embedding.detach().cpu().numpy()
             # take the average over that word's tokens as a representation
             layer_rep_dict[specific_layer].append(np.mean(full_sequence_embedding[0, token_inds_to_avg, :], 0))
         else:
             # do not iterate over the last element as it is the word embeddings
             for layer, layer_embedding in enumerate(embeddings_to_add[:-1]):
-                full_sequence_embedding = layer_embedding.detach().numpy()
+                full_sequence_embedding = layer_embedding.detach().cpu().numpy()
                 # take the average over that word's tokens as a representation
                 layer_rep_dict[layer].append(np.mean(full_sequence_embedding[0, token_inds_to_avg, :], 0)) # avg over all tokens for specified word
         return layer_rep_dict

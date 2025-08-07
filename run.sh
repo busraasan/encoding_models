@@ -8,9 +8,9 @@ REPS_DIR="/BRAIN/neuromod-data/static00/training_saves/"
 RECORDING_PATH="/BRAIN/neuromod-data/static00/narratives.stimuli/audio_files_filtered/"
 TIMESTAMPS_PATH="../stimuli_transcriptions/"
 N_FOLDS=9
-NLP_MODEL="GPT-2"
+NLP_MODEL="Llama-7B"
 USE_LAYER=8
-SESSION=-2
+SESSION=-1
 
 SUBJECTS=(1 2 3 5 6)
 LOG_DIR="./logs"

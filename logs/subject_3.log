@@ -1,2 +1,472 @@
 /home/basan/fmvalid/lib/python3.11/site-packages/transformers/utils/hub.py:111: FutureWarning: Using `TRANSFORMERS_CACHE` is deprecated and will be removed in v5 of Transformers. Use `HF_HOME` instead.
   warnings.warn(
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Doing lanczos interpolation with cutoff=0.671 and 4 lobes.
+Running cross validation...
+Train: X=(3890, 71, 91, 71)
+ Test: X=(390, 71, 91, 71)
+Keeping 14758/458731 voxels (no NaNs)
+(3496,) (389,)
+(3496,) (389,)
+(3496,) (389,)
+(3496,) (389,)
+(3496,) (389,)
+(3497,) (388,)
+(3497,) (388,)
+(3497,) (388,)
+(3497,) (388,)
+(3497,) (388,)
+fold 0 completed, took 23.39394783973694 seconds
+
+Mean correlation: 
+0.009977837963878095
+
+
+Train: X=(3657, 71, 91, 71)
+ Test: X=(623, 71, 91, 71)
+Keeping 14758/458731 voxels (no NaNs)
+(3291,) (366,)
+(3291,) (366,)
+(3291,) (366,)
+(3291,) (366,)
+(3291,) (366,)
+(3291,) (366,)
+(3291,) (366,)
+(3292,) (365,)
+(3292,) (365,)
+(3292,) (365,)
+fold 1 completed, took 21.426987171173096 seconds
+
+Mean correlation: 
+0.06944389181902148
+
+
+Train: X=(3978, 71, 91, 71)
+ Test: X=(302, 71, 91, 71)
+Keeping 14758/458731 voxels (no NaNs)
+(3580,) (398,)
+(3580,) (398,)
+(3580,) (398,)
+(3580,) (398,)
+(3580,) (398,)
+(3580,) (398,)
+(3580,) (398,)
+(3580,) (398,)
+(3581,) (397,)
+(3581,) (397,)
+fold 2 completed, took 30.106482982635498 seconds
+
+Mean correlation: 
+0.08708108658133584
+
+
+Train: X=(3753, 71, 91, 71)
+ Test: X=(527, 71, 91, 71)
+Keeping 14758/458731 voxels (no NaNs)
+(3377,) (376,)
+(3377,) (376,)
+(3377,) (376,)
+(3378,) (375,)
+(3378,) (375,)
+(3378,) (375,)
+(3378,) (375,)
+(3378,) (375,)
+(3378,) (375,)
+(3378,) (375,)
+fold 3 completed, took 24.90421724319458 seconds
+
+Mean correlation: 
+0.1193722077454767
+
+
+Train: X=(3917, 71, 91, 71)
+ Test: X=(363, 71, 91, 71)
+Keeping 14758/458731 voxels (no NaNs)
+(3525,) (392,)
+(3525,) (392,)
+(3525,) (392,)
+(3525,) (392,)
+(3525,) (392,)
+(3525,) (392,)
+(3525,) (392,)
+(3526,) (391,)
+(3526,) (391,)
+(3526,) (391,)
+fold 4 completed, took 23.190763235092163 seconds
+
+Mean correlation: 
+0.08295264428425782
+
+
+Train: X=(3779, 71, 91, 71)
+ Test: X=(501, 71, 91, 71)
+Keeping 14758/458731 voxels (no NaNs)
+(3401,) (378,)
+(3401,) (378,)
+(3401,) (378,)
+(3401,) (378,)
+(3401,) (378,)
+(3401,) (378,)
+(3401,) (378,)
+(3401,) (378,)
+(3401,) (378,)
+(3402,) (377,)
+fold 5 completed, took 22.825390577316284 seconds
+
+Mean correlation: 
+0.09737212475938932
+
+
+Train: X=(3744, 71, 91, 71)
+ Test: X=(536, 71, 91, 71)
+Keeping 14758/458731 voxels (no NaNs)
+(3369,) (375,)
+(3369,) (375,)
+(3369,) (375,)
+(3369,) (375,)
+(3370,) (374,)
+(3370,) (374,)
+(3370,) (374,)
+(3370,) (374,)
+(3370,) (374,)
+(3370,) (374,)
+fold 6 completed, took 29.837865352630615 seconds
+
+Mean correlation: 
+0.03974640999001264
+
+
+Train: X=(3803, 71, 91, 71)
+ Test: X=(477, 71, 91, 71)
+Keeping 14758/458731 voxels (no NaNs)
+(3422,) (381,)
+(3422,) (381,)
+(3422,) (381,)
+(3423,) (380,)
+(3423,) (380,)
+(3423,) (380,)
+(3423,) (380,)
+(3423,) (380,)
+(3423,) (380,)
+(3423,) (380,)
+fold 7 completed, took 23.96080207824707 seconds
+
+Mean correlation: 
+0.10392325452647551
+
+
+Train: X=(3719, 71, 91, 71)
+ Test: X=(561, 71, 91, 71)
+Keeping 14758/458731 voxels (no NaNs)
+(3342,) (372,)
+(3342,) (372,)
+(3342,) (372,)
+(3342,) (372,)
+(3343,) (371,)
+(3343,) (371,)
+(3343,) (371,)
+(3343,) (371,)
+(3343,) (371,)
+(3343,) (371,)
+fold 8 completed, took 24.070270776748657 seconds
+
+Mean correlation: 
+0.03487906239518162
+
+
+Saved training results → /BRAIN/neuromod-data/static00/training_saves/all_stories/Llama-7B/training_results/predict_sub-03_with_Llama-7B_layer_8_len_20_folds_9_LANG_REGION_session_-1

@@ -401,3 +401,46 @@ def load_fmri_data_lang_reg(
     # print(f"Combined mask saved to {output_mask_path}")
 
     return output_data.T
+
+def load_fmri_data_gm(datadir: str,
+    subject: str,
+    session: str,
+    task: str,
+    resample_masks: bool = False,
+    start_trim=20,
+    end_trim=15
+) -> np.ndarray:
+    """
+    Load a functional or ISC NIfTI file (3-D or 4-D) and keep only the
+    voxels that fall inside **grrey matter** mask.
+
+    Returns
+    -------
+    lang_data : ndarray, shape (T, V_lang)
+        • `T` = number of time-points (``1`` if the input is 3-D).  
+        • `V_gm` = number of voxels in the grey matter mask.
+    """
+    subject=str(subject)
+    source_folder = "/BRAIN/neuromod-data/static00/anat.atlases/tpl-sub0"+subject+"T1w/"
+    mask_path = source_folder+"tpl-sub0"+subject+"T1w_res-anat_label-GM_desc-fromFS_dseg.nii.gz"
+
+    func_path = f"/BRAIN/neuromod-data/static00/narratives.fmriprep/sub-0{subject}/{session}/func/sub-0{subject}_{session}_task-{task}_space-T1w_desc-preproc_part-mag_bold.nii.gz"
+    
+    func_data = load_and_process(
+        file=func_path,
+        start_trim=start_trim,
+        end_trim=end_trim
+    )  # → assumed shape (T, X, Y, Z)
+    func_data = func_data.T
+
+    output_data = np.full(func_data.shape, np.nan)
+
+    # Load the mask
+    atlas_mask_img = nib.load(mask_path)
+    atlas_mask_data = atlas_mask_img.get_fdata().astype(bool)
+
+    output_data[atlas_mask_data] = func_data[atlas_mask_data]
+
+    return output_data.T
+
+
