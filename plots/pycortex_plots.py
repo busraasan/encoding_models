@@ -8,9 +8,9 @@ import re
 from pathlib import Path
 
 s = "6"
-model = "GPT-2"
+model = "Llama-7B"
 layer = "8"
-corr_data_dir = "/BRAIN/neuromod-data/static00/training_saves/all_stories/GPT-2/training_results"
+corr_data_dir = f"/BRAIN/neuromod-data/static00/training_saves/all_stories/{model}/training_results"
 data_dir = '/BRAIN/neuromod-data/static00/try/'
 method = "encoding_models_corr_map"
 plotting_topic = "corr"
@@ -69,7 +69,7 @@ for i, y in enumerate(fold_means):
 
 out_dir = Path("corr_figures")
 out_dir.mkdir(parents=True, exist_ok=True)
-base_name = f"per_story_mean_corr_sub-{str(s).zfill(2)}_{model}_layer-{layer}_len-{context_len}_folds-{folds}"
+base_name = f"per_story_mean_corr_sub-{str(s).zfill(2)}_{model}_layer-{layer}_len-{context_len}_folds-{folds}_session_{session}"
 out_base = out_dir / base_name
 
 ext="png"
