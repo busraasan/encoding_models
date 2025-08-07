@@ -32,8 +32,9 @@ File paths should be updated based on your FMRI data location.
 
 ## Data Preparation
 
-1. **Stimuli transcriptions**: A plain-text file with one utterance per line.
-2. **Neural recordings**: Time-series data (e.g., EEG/MEG/fMRI) preprocessed and saved in `h5` or NumPy formats.
+1. **Stimuli transcriptions**: A plain-text file with one word per line (Number of lines should match with the number of words in the text. Sanity check code for this can be found at [busraasan/narratives_audio_processing](https://github.com/busraasan/narratives_audio_processing)
+.
+2. **Neural recordings**: Time-series fMRI data preprocessed and saved in nii.gz format.
 3. **Timestamp alignment**: A CSV mapping each stimulus index to a recording timepoint.
 
 ## Feature Extraction
@@ -56,7 +57,7 @@ python scripts/extract_lm_features.py \
 | `--nlp_model`       | string | `GPT-2`                    | Pretrained model to use (choices: GPT-2, etc.)   |
 | `--sequence_length` | int    | `20`                       | Context length (tokens) for embedding extraction |
 | `--stimuli_file`    | path   | `prettymouth_audio.txt`    | Text file with one stimulus utterance per line   |
-| `--output_dir`      | path   | `static00/training_saves/` | Directory to save extracted feature files        |
+| `--output_dir`      | path   | `static00/training_saves/` | Directory to save extracted feature files by extract_lm_features.py        |
 | `--task_name`       | string | `PrettymouthStory`         | Identifier for the current stimulus set          |
 
 ---
@@ -68,8 +69,8 @@ Train per-subject encoding models using extracted embeddings and neural recordin
 ```bash
 python scripts/run_subject.py \
   --reps_dir static00/training_saves/ \
-  --recording_path recordings/subject01_session1.h5 \
-  --timestamps_path timestamps/subject01_session1.csv \
+  --recording_path audio_recordings/ \
+  --timestamps_path stimuli_transcriptions/ \
   --subject 1 \
   --session 1 \
   --n_folds 5 \
@@ -79,16 +80,19 @@ python scripts/run_subject.py \
 
 ### Training Arguments
 
-| Argument            | Type   | Description                                                            |
-| ------------------- | ------ | ---------------------------------------------------------------------- |
-| `--reps_dir`        | path   | Directory containing LM feature files                                  |
-| `--recording_path`  | path   | Filepath to subject's neural data                                      |
-| `--timestamps_path` | path   | CSV mapping stimulus indices to recording timepoints                   |
-| `--subject`         | string | Subject identifier (e.g., `1`, `2`)                                  |
-| `--session`         | string | Session identifier (e.g., `1`, `2`)                                    |
-| `--n_folds`         | int    | Number of cross-validation folds (e.g., 9 since we hold out one story per fold)                             |
-| `--nlp_model`       | string | Same model used for feature extraction (e.g., `GPT-2`)                 |
-| `--use_layer`       | int    | Which layer's activations to use (e.g. 8, 10) |
+| Argument            | Type   | Description                                                                                          |
+| ------------------- | ------ | ---------------------------------------------------------------------------------------------------- |
+| `--nlp_model`       | string | Which pretrained NLP model to use (must match feature‐extraction model, e.g. `GPT-2`).                |
+| `--sequence_length` | int    | Number of context tokens to provide the NLP model when extracting embeddings (default: 20).          |
+| `--reps_dir`        | path   | Directory containing the extracted LM feature files.                                                 |
+| `--output_dir`      | path   | Directory to save encoding‐model outputs (weights, metrics, etc.).                                   |
+| `--recording_path`  | path   | Directory or filepath where the audio‐stimuli recordings are stored.                                 |
+| `--timestamps_path` | path   | CSV file mapping each word (or stimulus index) to its recording timepoint.                           |
+| `--use_layer`       | int    | Which transformer layer’s activations to use for encoding (e.g., 8, 10).                             |
+| `--subject`         | int    | Subject identifier (e.g., `1`, `2`, …).                                                              |
+| `--session`         | int    | Session identifier (e.g., `1`, `2`, …; `-1` for session-agnostic runs).                              |
+| `--region`          | string | Which brain region mask to use (e.g., `LANG_REGION`).                                                |
+| `--n_folds`         | int    | Number of cross‐validation folds (e.g., 9 if holding out one story per fold).                        |
 
 ---
 
