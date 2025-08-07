@@ -1,4 +1,4 @@
-### Neuromod Narratives Encoding & Encoding Model Training
+## Neuromod Narratives Encoding & Encoding Model Training
 
 This repository provides utilities to extract language-model embeddings (features) from Neuromod Narratives stimuli and to train encoding models mapping these features to neural recordings.
 
@@ -21,10 +21,14 @@ File paths should be updated based on your FMRI data location.
 
 ## Overview
 
-`extract_lm_features.py` extracts contextual embeddings from a chosen NLP model (e.g., GPT-2) for each stimulus in a text file.
-`run_subject.py` uses those embeddings, aligned to neural timestamps, to train ridge/regression-based encoding models on per-subject data.
-`utils.py` includes implementation of FIR delays, fmri extractions, masking regions.
----
+- **extract_lm_features.py**  
+  Pulls contextual embeddings from your chosen NLP model (e.g. GPT-2) for each line in a stimuli file.
+
+- **run_subject.py**  
+  Aligns those embeddings to neural timestamps and fits per‐subject encoding models (ridge/regression).
+
+- **utils.py**  
+  Helper routines for FIR delays, fMRI extraction, and ROI masking.
 
 ## Data Preparation
 
