@@ -98,4 +98,4 @@ python scripts/run_subject.py \
 
 ## Output
 
-* **Model weights & metrics**: Saved under `static00/training_saves/<task_name>/models/` as a numpy object array which you can extract correlations and predictions from the dictionary entries `corrs_t` and `preds_t`.
+* **Model weights & metrics**: Saved under `static00/training_saves/<task_name>/<model_name>/` as a numpy object array which you can extract correlations and predictions from the dictionary entries `corrs_t` and `preds_t`.
